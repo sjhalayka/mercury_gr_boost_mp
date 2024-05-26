@@ -16,6 +16,35 @@ int main(int argc, char** argv)
 	cout << setprecision(20) << endl;
 
 
+	//float e = 0.5;
+
+	//cout << sqrt((grav_constant * sun_mass / 57909176e3) * (1 - e) / (1 + e)) << endl;
+
+
+
+	//double value = 0;
+
+	//uint64_t bits = (uint64_t&)value;
+	//bits++;
+	//value = (double&)bits;
+
+	//cout << value << endl;
+
+
+	//cout << nexttowardf(0, 1) << endl;
+	//cout << nexttoward(0, 1) << endl;
+	//cout << nextafterf(0, 1) << endl;
+	//cout << nextafter(0, 1) << endl;
+
+	//cout << FLT_TRUE_MIN << endl;
+	//cout << DBL_TRUE_MIN << endl;
+
+
+//	return 0;
+
+
+
+
 
 
 #ifndef USE_OPENGL
@@ -195,8 +224,8 @@ void idle_func(void)
 	 
 	custom_math::vector_3 last_pos = mercury_pos;
 
-	//proceed_Euler(mercury_pos, mercury_vel, grav_constant, dt);
-	proceed_symplectic4(mercury_pos, mercury_vel, grav_constant, dt);
+	proceed_Euler(mercury_pos, mercury_vel, grav_constant, dt);
+	//proceed_symplectic4(mercury_pos, mercury_vel, grav_constant, dt);
 
 	//custom_math::vector_3 next_pos = mercury_pos;
 	//custom_math::vector_3 next_vel = mercury_vel;
@@ -210,6 +239,7 @@ void idle_func(void)
 			// hit perihelion
 			cout << "hit perihelion" << endl;
 			decreasing = false;
+			periapsis = (sun_pos - last_pos).length();
 			return;
 		}
 	}
@@ -222,6 +252,18 @@ void idle_func(void)
 		{
 			// hit aphelion
 			cout << "hit aphelion" << endl;
+
+			apoapsis = (sun_pos - last_pos).length();
+
+			MyBig semi_major_axis = 0.5 * (periapsis + apoapsis);
+
+			MyBig eccentricity =
+
+				(grav_constant * sun_mass - semi_major_axis * initial_vel * initial_vel)
+				/
+				(grav_constant * sun_mass + semi_major_axis * initial_vel * initial_vel);
+
+			//exit(0);
 
 			orbit_count++;
 
@@ -236,6 +278,9 @@ void idle_func(void)
 				cout << "nan" << endl;
 
 			previous_dir = current_dir;
+
+			const MyBig delta = 6.0f * pi * grav_constant * sun_mass / (speed_of_light * speed_of_light * (1.0f - eccentricity * eccentricity) * semi_major_axis);
+
 
 			static const MyBig num_orbits_per_earth_century = 365.0 / 88.0 * 100;
 			static const MyBig to_arcseconds = 1.0 / (pi / (180.0 * 3600.0));

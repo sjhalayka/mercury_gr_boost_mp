@@ -34,8 +34,8 @@ using namespace boost::multiprecision;
 
 //
 
-typedef cpp_bin_float_double MyBig;
-typedef cpp_bin_float_20 MySmall;
+typedef cpp_bin_float_55 MyBig;
+typedef cpp_bin_float_24 MySmall;
 
 
 namespace custom_math
