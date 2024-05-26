@@ -195,11 +195,11 @@ void idle_func(void)
 	 
 	custom_math::vector_3 last_pos = mercury_pos;
 
-	proceed_Euler(mercury_pos, mercury_vel, grav_constant, dt);
-	//proceed_symplectic4(mercury_pos, mercury_vel, grav_constant, dt);
+	//proceed_Euler(mercury_pos, mercury_vel, grav_constant, dt);
+	proceed_symplectic4(mercury_pos, mercury_vel, grav_constant, dt);
 
-//	custom_math::vector_3 next_pos = mercury_pos;
-//	custom_math::vector_3 next_vel = mercury_vel;
+	//custom_math::vector_3 next_pos = mercury_pos;
+	//custom_math::vector_3 next_vel = mercury_vel;
 	//proceed_Euler(next_pos, next_vel, grav_constant, dt);
 //	proceed_symplectic4(next_pos, next_vel, grav_constant, dt);
 
@@ -216,8 +216,8 @@ void idle_func(void)
 	else
 	{
 		if (mercury_pos.length() < last_pos.length()
-		//	&&
-		//	mercury_pos.length() > next_pos.length()
+			//&&
+			//mercury_pos.length() > next_pos.length()
 			&& frame_count > 1)
 		{
 			// hit aphelion
@@ -343,7 +343,7 @@ void draw_objects(void)
 
 
 	glBegin(GL_POINTS);
-	glVertex3f(sun_pos.x.convert_to<double>(), sun_pos.y.convert_to<double>(), sun_pos.z.convert_to<double>());
+	glVertex3d(sun_pos.x.convert_to<double>(), sun_pos.y.convert_to<double>(), sun_pos.z.convert_to<double>());
 	glEnd();
 
 	glBegin(GL_LINE_STRIP);

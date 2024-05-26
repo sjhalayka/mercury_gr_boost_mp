@@ -6,7 +6,7 @@
 
 #include "custom_math.h"
 
-const MyBig dt = 0.01;
+const MyBig dt = 0.1;
 
 const MyBig speed_of_light = 299792458.0;
 const MyBig grav_constant = 6.6743e-11;
@@ -16,7 +16,21 @@ custom_math::vector_3 sun_pos(0, 0, 0);
 custom_math::vector_3 mercury_pos(0, 69817079000.0, 0);
 custom_math::vector_3 mercury_vel(-38858.47, 0, 0);
 
+// Pluto
+//custom_math::vector_3 mercury_pos(0, 7304.326e9, 0);
+//custom_math::vector_3 mercury_vel(-3.71e3, 0, 0);
 
+// https://nssdc.gsfc.nasa.gov/planetary/factsheet/plutofact.html
+
+const MyBig pi = 4.0f * atanf(1.0f);
+
+
+// Mercury
+const MyBig delta = 6.0f * pi * grav_constant * sun_mass / (speed_of_light * speed_of_light * (1.0f - 0.2056f * 0.2056f) * 57.909e9f);
+
+
+// Pluto
+//const MyBig delta = 6.0f * pi * grav_constant * sun_mass / (speed_of_light * speed_of_light * (1.0f - 0.2444 * 0.2444) * 5869.656e9f);
 
 
 
@@ -36,9 +50,6 @@ custom_math::vector_3 previous_dir(0, 1, 0);
 // http://einsteinrelativelyeasy.com/index.php/general-relativity/174-advance-of-the-perihelion-of-mercury
 // https://astronomy.stackexchange.com/a/29008/15517
 
-
-const MyBig pi = 4.0f * atanf(1.0f);
-const MyBig delta = 6.0f * pi * grav_constant * sun_mass / (speed_of_light * speed_of_light * (1.0f - 0.2056f * 0.2056f) * 57.909e9f);
 
 
 
@@ -74,7 +85,7 @@ int win_x = 800, win_y = 600;
  MyBig v_spacer = 0.5 * u_spacer;
  MyBig w_spacer = 0.1;
  MyBig camera_near = 1.0;
- MyBig camera_far = 1000000000.0;
+ MyBig camera_far =camera_w * 10.0;
 
 bool lmb_down = false;
 bool mmb_down = false;
