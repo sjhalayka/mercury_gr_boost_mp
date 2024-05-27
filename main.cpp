@@ -87,7 +87,10 @@ custom_math::vector_3 grav_acceleration( custom_math::vector_3& pos, const custo
 	const MyBig distance = grav_dir.length();
 	grav_dir.normalize();
 
-	MyBig a = G * sun_mass / (distance * distance);
+	const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
+	MyBig inv_beta = 1.0/sqrt(1.0 - Rs / distance);
+
+	MyBig a = inv_beta * G * sun_mass / (distance * distance);
 	custom_math::vector_3 accel =  grav_dir * a;
 	return accel;
 }
