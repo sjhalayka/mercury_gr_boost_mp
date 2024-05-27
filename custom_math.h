@@ -32,10 +32,34 @@ using std::endl;
 
 using namespace boost::multiprecision;
 
-//
 
-typedef cpp_bin_float_100 MyBig;
-typedef cpp_bin_float_24 MySmall;
+using cpp_bin_float_20_ = number<backends::cpp_bin_float<20, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_21_ = number<backends::cpp_bin_float<21, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_22_ = number<backends::cpp_bin_float<22, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_23_ = number<backends::cpp_bin_float<23, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_24_ = number<backends::cpp_bin_float<24, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_25_ = number<backends::cpp_bin_float<25, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_26_ = number<backends::cpp_bin_float<26, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_27_ = number<backends::cpp_bin_float<27, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_28_ = number<backends::cpp_bin_float<28, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_29_ = number<backends::cpp_bin_float<29, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_30_ = number<backends::cpp_bin_float<30, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+
+
+
+
+
+using cpp_bin_float_35_ = number<backends::cpp_bin_float<35, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_40_ = number<backends::cpp_bin_float<40, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_45_ = number<backends::cpp_bin_float<45, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_50_ = number<backends::cpp_bin_float<50, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_55_ = number<backends::cpp_bin_float<55, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+
+using cpp_bin_float_100_ = number<backends::cpp_bin_float<100, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+
+
+typedef cpp_bin_float_100_ MyBig;
+typedef cpp_bin_float_20_ MySmall;
 
 
 namespace custom_math
