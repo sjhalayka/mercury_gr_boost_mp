@@ -107,87 +107,87 @@ MySmall truncate_normalized_double(MyBig d)
 
 
 
-
-void proceed_symplectic4(custom_math::vector_3& pos, custom_math::vector_3& vel,  MyBig G,  MyBig dt)
-{
-	static MyBig const cr2 = pow(2.0, 1.0 / 3.0);
-
-	static const MyBig c[4] =
-	{
-		1.0 / (2.0 * (2.0 - cr2)),
-		(1.0 - cr2) / (2.0 * (2.0 - cr2)),
-		(1.0 - cr2) / (2.0 * (2.0 - cr2)),
-		1.0 / (2.0 * (2.0 - cr2))
-	};
-
-	static const MyBig d[4] =
-	{
-		1.0 / (2.0 - cr2),
-		-cr2 / (2.0 - cr2),
-		1.0 / (2.0 - cr2),
-		0.0
-	};
-
-	{
-		const custom_math::vector_3 grav_dir = sun_pos - pos;
-		const MyBig distance = grav_dir.length();
-		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
-
-		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
-
-		const MyBig beta = sqrt(1.0 - Rs / distance);
-		const MyBig beta_truncated = truncate_normalized_double(beta);
-
-		pos += vel * c[0] * dt * beta_truncated;
-		vel += grav_acceleration(pos, vel, G) * d[0] * dt * alpha;
-	}
-
-	{
-		const custom_math::vector_3 grav_dir = sun_pos - pos;
-		const MyBig distance = grav_dir.length();
-		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
-
-		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
-
-		const MyBig beta = sqrt(1.0 - Rs / distance);
-		const MyBig beta_truncated = truncate_normalized_double(beta);
-
-		pos += vel * c[1] * dt * beta_truncated;
-		vel += grav_acceleration(pos, vel, G) * d[1] * dt * alpha;
-
-
-	}
-
-	{
-		const custom_math::vector_3 grav_dir = sun_pos - pos;
-		const MyBig distance = grav_dir.length();
-		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
-
-		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
-
-		const MyBig beta = sqrt(1.0 - Rs / distance);
-		const MyBig beta_truncated = truncate_normalized_double(beta);
-
-		pos += vel * c[2] * dt * beta_truncated;
-		vel += grav_acceleration(pos, vel, G) * d[2] * dt * alpha;
-	}
-
-	{
-		const custom_math::vector_3 grav_dir = sun_pos - pos;
-		const MyBig distance = grav_dir.length();
-		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
-
-		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
-
-		const MyBig beta = sqrt(1.0 - Rs / distance);
-		const MyBig beta_truncated = truncate_normalized_double(beta);
-
-		pos += vel * c[3] * dt * beta_truncated;
-		//	vel += grav_acceleration(pos, vel, G) * d[3] * dt * alpha; // last element d[3] is always 0
-	}
-}
-
-
+//
+//void proceed_symplectic4(custom_math::vector_3& pos, custom_math::vector_3& vel,  MyBig G,  MyBig dt)
+//{
+//	static MyBig const cr2 = pow(2.0, 1.0 / 3.0);
+//
+//	static const MyBig c[4] =
+//	{
+//		1.0 / (2.0 * (2.0 - cr2)),
+//		(1.0 - cr2) / (2.0 * (2.0 - cr2)),
+//		(1.0 - cr2) / (2.0 * (2.0 - cr2)),
+//		1.0 / (2.0 * (2.0 - cr2))
+//	};
+//
+//	static const MyBig d[4] =
+//	{
+//		1.0 / (2.0 - cr2),
+//		-cr2 / (2.0 - cr2),
+//		1.0 / (2.0 - cr2),
+//		0.0
+//	};
+//
+//	{
+//		const custom_math::vector_3 grav_dir = sun_pos - pos;
+//		const MyBig distance = grav_dir.length();
+//		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
+//
+//		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
+//
+//		const MyBig beta = sqrt(1.0 - Rs / distance);
+//		const MyBig beta_truncated = truncate_normalized_double(beta);
+//
+//		pos += vel * c[0] * dt * beta_truncated;
+//		vel += grav_acceleration(pos, vel, G) * d[0] * dt * alpha;
+//	}
+//
+//	{
+//		const custom_math::vector_3 grav_dir = sun_pos - pos;
+//		const MyBig distance = grav_dir.length();
+//		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
+//
+//		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
+//
+//		const MyBig beta = sqrt(1.0 - Rs / distance);
+//		const MyBig beta_truncated = truncate_normalized_double(beta);
+//
+//		pos += vel * c[1] * dt * beta_truncated;
+//		vel += grav_acceleration(pos, vel, G) * d[1] * dt * alpha;
+//
+//
+//	}
+//
+//	{
+//		const custom_math::vector_3 grav_dir = sun_pos - pos;
+//		const MyBig distance = grav_dir.length();
+//		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
+//
+//		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
+//
+//		const MyBig beta = sqrt(1.0 - Rs / distance);
+//		const MyBig beta_truncated = truncate_normalized_double(beta);
+//
+//		pos += vel * c[2] * dt * beta_truncated;
+//		vel += grav_acceleration(pos, vel, G) * d[2] * dt * alpha;
+//	}
+//
+//	{
+//		const custom_math::vector_3 grav_dir = sun_pos - pos;
+//		const MyBig distance = grav_dir.length();
+//		const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
+//
+//		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
+//
+//		const MyBig beta = sqrt(1.0 - Rs / distance);
+//		const MyBig beta_truncated = truncate_normalized_double(beta);
+//
+//		pos += vel * c[3] * dt * beta_truncated;
+//		//	vel += grav_acceleration(pos, vel, G) * d[3] * dt * alpha; // last element d[3] is always 0
+//	}
+//}
+//
+//
 
 
 
@@ -200,13 +200,18 @@ void proceed_Euler(custom_math::vector_3& pos, custom_math::vector_3& vel, const
 
 	MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
 
+	MyBig alpha_truncated = alpha;
+	alpha_truncated -= 1.0;
+	alpha_truncated = truncate_normalized_double(alpha_truncated);
+	alpha_truncated += 1.0;
+
 	const MyBig beta = sqrt(1.0 - Rs / distance);
 
 	const MyBig beta_truncated = truncate_normalized_double(beta);
 
 	custom_math::vector_3 accel = grav_acceleration(pos, vel, G);
 
-	MyBig a = dt * alpha;
+	MyBig a = dt * alpha_truncated;
 
 	vel += accel * a;
 
@@ -221,6 +226,8 @@ long unsigned int frame_count = 0;
 void idle_func(void)
 {
 	frame_count++;
+
+	dt = (speed_of_light / mercury_vel.length()) * 1e-5;
 	 
 	custom_math::vector_3 last_pos = mercury_pos;
 
