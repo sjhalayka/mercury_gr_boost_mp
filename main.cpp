@@ -247,14 +247,14 @@ void idle_func(void)
 {
 	frame_count++;
 
-	dt = 0.01;// (speed_of_light / mercury_vel.length()) * 1e-5;
+	dt = 0.1;// (speed_of_light / mercury_vel.length()) * 1e-5;
 	
 	orbital_period += dt;
 
 	custom_math::vector_3 last_pos = mercury_pos;
 
-	proceed_Euler(mercury_pos, mercury_vel, grav_constant, dt);
-	//proceed_symplectic4(mercury_pos, mercury_vel, grav_constant, dt);
+	//proceed_Euler(mercury_pos, mercury_vel, grav_constant, dt);
+	proceed_symplectic4(mercury_pos, mercury_vel, grav_constant, dt);
 
 	//custom_math::vector_3 next_pos = mercury_pos;
 	//custom_math::vector_3 next_vel = mercury_vel;
