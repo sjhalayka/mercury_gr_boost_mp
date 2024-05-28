@@ -87,10 +87,7 @@ custom_math::vector_3 grav_acceleration( custom_math::vector_3& pos, const custo
 	const MyBig distance = grav_dir.length();
 	grav_dir.normalize();
 
-	const MyBig Rs = 2 * grav_constant * sun_mass / (speed_of_light * speed_of_light);
-	MyBig inv_beta = 1.0/sqrt(1.0 - Rs / distance);
-
-	MyBig a = inv_beta * G * sun_mass / (distance * distance);
+	MyBig a = G * sun_mass / (distance * distance);
 	custom_math::vector_3 accel =  grav_dir * a;
 	return accel;
 }
@@ -203,10 +200,10 @@ void proceed_Euler(custom_math::vector_3& pos, custom_math::vector_3& vel, const
 
 	MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
 
-	MyBig alpha_truncated = alpha;
-	alpha_truncated -= 1.0;
-	alpha_truncated = truncate_normalized_double(alpha_truncated);
-	alpha_truncated += 1.0;
+	//MyBig alpha_truncated = alpha;
+	//alpha_truncated -= 1.0;
+	//alpha_truncated = truncate_normalized_double(alpha_truncated);
+	//alpha_truncated += 1.0;
 
 	const MyBig beta = sqrt(1.0 - Rs / distance);
 
@@ -214,7 +211,7 @@ void proceed_Euler(custom_math::vector_3& pos, custom_math::vector_3& vel, const
 
 	custom_math::vector_3 accel = grav_acceleration(pos, vel, G);
 
-	MyBig a = dt * alpha_truncated;
+	MyBig a = dt * alpha;// alpha_truncated;
 
 	vel += accel * a;
 
