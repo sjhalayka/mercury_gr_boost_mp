@@ -7,6 +7,7 @@
 #include "custom_math.h"
 
 MyBig dt = 0.01;
+MyBig orbital_period = 0;
 
 const MyBig speed_of_light = 299792458.0;
 const MyBig grav_constant = 6.6743e-11;

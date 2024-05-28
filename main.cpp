@@ -200,10 +200,10 @@ void proceed_Euler(custom_math::vector_3& pos, custom_math::vector_3& vel, const
 
 	MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
 
-	//MyBig alpha_truncated = alpha;
-	//alpha_truncated -= 1.0;
-	//alpha_truncated = truncate_normalized_double(alpha_truncated);
-	//alpha_truncated += 1.0;
+	MyBig alpha_truncated = alpha;
+	alpha_truncated -= 1.0;
+	alpha_truncated = truncate_normalized_double(alpha_truncated);
+	alpha_truncated += 1.0;
 
 	const MyBig beta = sqrt(1.0 - Rs / distance);
 
@@ -211,7 +211,7 @@ void proceed_Euler(custom_math::vector_3& pos, custom_math::vector_3& vel, const
 
 	custom_math::vector_3 accel = grav_acceleration(pos, vel, G);
 
-	MyBig a = dt * alpha;// alpha_truncated;
+	MyBig a = dt * alpha_truncated;
 
 	vel += accel * a;
 
@@ -228,7 +228,9 @@ void idle_func(void)
 	frame_count++;
 
 	dt = (speed_of_light / mercury_vel.length()) * 1e-5;
-	 
+	
+	orbital_period += dt;
+
 	custom_math::vector_3 last_pos = mercury_pos;
 
 	proceed_Euler(mercury_pos, mercury_vel, grav_constant, dt);
@@ -288,6 +290,8 @@ void idle_func(void)
 
 			const MyBig delta = 6.0f * pi * grav_constant * sun_mass / (speed_of_light * speed_of_light * (1.0f - eccentricity * eccentricity) * semi_major_axis);
 
+			const MyBig delta2 = 24.0f * pi * pi * pi * semi_major_axis * semi_major_axis / (orbital_period*orbital_period * speed_of_light * speed_of_light * (1 - eccentricity*eccentricity));
+
 
 			static const MyBig num_orbits_per_earth_century = 365.0 / 88.0 * 100;
 			static const MyBig to_arcseconds = 1.0 / (pi / (180.0 * 3600.0));
@@ -296,7 +300,9 @@ void idle_func(void)
 			cout << "dot   " << d << endl;
 			cout << "angle " << angle * num_orbits_per_earth_century * to_arcseconds << endl;
 			cout << "delta " << delta * num_orbits_per_earth_century * to_arcseconds << endl;
-			
+			cout << "delta2 " << delta2 * num_orbits_per_earth_century * to_arcseconds << endl;
+
+			orbital_period = 0;
 
 			cout << endl;
 

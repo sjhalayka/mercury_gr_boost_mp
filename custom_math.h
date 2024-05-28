@@ -32,7 +32,6 @@ using std::endl;
 
 using namespace boost::multiprecision;
 
-
 using cpp_bin_float_20_ = number<backends::cpp_bin_float<20, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
 using cpp_bin_float_21_ = number<backends::cpp_bin_float<21, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
 using cpp_bin_float_22_ = number<backends::cpp_bin_float<22, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
@@ -55,11 +54,11 @@ using cpp_bin_float_45_ = number<backends::cpp_bin_float<45, backends::digit_bas
 using cpp_bin_float_50_ = number<backends::cpp_bin_float<50, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
 using cpp_bin_float_55_ = number<backends::cpp_bin_float<55, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
 
-using cpp_bin_float_100_ = number<backends::cpp_bin_float<100, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_100_ = number<backends::cpp_bin_float<100, backends::digit_base_2, void, std::int16_t, -1022, 1023>, et_off >;
 
 
 typedef cpp_bin_float_100_ MyBig;
-typedef cpp_bin_float_20_ MySmall;
+typedef cpp_bin_float_24_ MySmall;
 
 
 namespace custom_math
