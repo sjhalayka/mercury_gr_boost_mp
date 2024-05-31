@@ -94,6 +94,7 @@ custom_math::vector_3 grav_acceleration( custom_math::vector_3& pos, const custo
 
 
 
+
 MySmall truncate_normalized_double(MyBig d)
 {
 	if (d <= 0.0)
@@ -103,8 +104,6 @@ MySmall truncate_normalized_double(MyBig d)
 
 	return MySmall(d);
 }
-
-
 
 
 
@@ -194,10 +193,10 @@ void proceed_symplectic4(custom_math::vector_3& pos, custom_math::vector_3& vel,
 
 		const MyBig alpha = 2.0 - sqrt(1 - (vel.length() * vel.length()) / (speed_of_light * speed_of_light));
 
-		MyBig alpha_truncated = alpha;
-		alpha_truncated -= 1.0;
-		alpha_truncated = truncate_normalized_double(alpha_truncated);
-		alpha_truncated += 1.0;
+		//MyBig alpha_truncated = alpha;
+		//alpha_truncated -= 1.0;
+		//alpha_truncated = truncate_normalized_double(alpha_truncated);
+		//alpha_truncated += 1.0;
 
 		const MyBig beta = sqrt(1.0 - Rs / distance);
 		const MyBig beta_truncated = truncate_normalized_double(beta);

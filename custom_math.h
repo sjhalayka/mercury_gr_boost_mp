@@ -32,6 +32,12 @@ using std::endl;
 
 using namespace boost::multiprecision;
 
+using cpp_bin_float_16_ = number<backends::cpp_bin_float<16, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_17_ = number<backends::cpp_bin_float<17, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_18_ = number<backends::cpp_bin_float<18, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+using cpp_bin_float_19_ = number<backends::cpp_bin_float<19, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
+
+
 using cpp_bin_float_20_ = number<backends::cpp_bin_float<20, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
 using cpp_bin_float_21_ = number<backends::cpp_bin_float<21, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
 using cpp_bin_float_22_ = number<backends::cpp_bin_float<22, backends::digit_base_2, void, std::int16_t, -126, 127>, et_off >;
@@ -58,72 +64,71 @@ using cpp_bin_float_100_ = number<backends::cpp_bin_float<100, backends::digit_b
 
 
 typedef cpp_bin_float_100_ MyBig;
-typedef cpp_bin_float_24_ MySmall;
+typedef cpp_bin_float_27_ MySmall;
 
 
 namespace custom_math
 {
 	class vector_3;
 
-	 MyBig pi = 4.0 * atan(1.0);
-	 MyBig pi_half = pi / 2.0;
-	 MyBig pi_2 = pi * 2.0;
-	 MyBig epsilon = 1e-6;
+	MyBig pi = 4.0 * atan(1.0);
+	MyBig pi_half = pi / 2.0;
+	MyBig pi_2 = pi * 2.0;
+	MyBig epsilon = 1e-6;
 
-
- MyBig d( MyBig &a, MyBig &b);
- MyBig d_3(const vector_3 &a, const vector_3 &b);
-	 MyBig d_3_sq(const vector_3 &a, const vector_3 &b);
+	MyBig d(MyBig& a, MyBig& b);
+	MyBig d_3(const vector_3& a, const vector_3& b);
+	MyBig d_3_sq(const vector_3& a, const vector_3& b);
 };
 
 class custom_math::vector_3
 {
 public:
-	 MyBig x = 0, y = 0, z = 0;
+	MyBig x = 0, y = 0, z = 0;
 
-	 custom_math::vector_3(const MyBig src_x, const MyBig src_y, const MyBig src_z)
-	 {
-		 x = src_x;
-		 y = src_y;
-		 z = src_z;
-	 }
+	custom_math::vector_3(const MyBig src_x, const MyBig src_y, const MyBig src_z)
+	{
+		x = src_x;
+		y = src_y;
+		z = src_z;
+	}
 
-	 custom_math::vector_3(const double src_x, const double src_y, const double src_z)
-	 {
-		 x = src_x;
-		 y = src_y;
-		 z = src_z;
-	 }
+	custom_math::vector_3(const double src_x, const double src_y, const double src_z)
+	{
+		x = src_x;
+		y = src_y;
+		z = src_z;
+	}
 
-	 custom_math::vector_3(void)
-	 {
-		 x = 0;
-		 y = 0;
-		 z = 0;
-	 }
+	custom_math::vector_3(void)
+	{
+		x = 0;
+		y = 0;
+		z = 0;
+	}
 
-	bool operator==(const vector_3 &rhs);
-	bool operator!=(const vector_3 &rhs);
+	bool operator==(const vector_3& rhs);
+	bool operator!=(const vector_3& rhs);
 	void zero(void);
-	void rotate_x(  MyBig radians);
-	void rotate_y(  MyBig radians);
-    void rotate_z(  MyBig radians);
-    vector_3 operator+( vector_3 &rhs);
-	vector_3 operator-( vector_3 &rhs);
-	vector_3 operator*( vector_3 &rhs);
-	vector_3 operator*(  MyBig rhs);
-	vector_3 operator/(  MyBig rhs);
-	vector_3 operator=( vector_3 &rhs);
-	vector_3 operator+=( vector_3 rhs);
+	void rotate_x(MyBig radians);
+	void rotate_y(MyBig radians);
+	void rotate_z(MyBig radians);
+	vector_3 operator+(vector_3& rhs);
+	vector_3 operator-(vector_3& rhs);
+	vector_3 operator*(vector_3& rhs);
+	vector_3 operator*(MyBig rhs);
+	vector_3 operator/(MyBig rhs);
+	vector_3 operator=(vector_3& rhs);
+	vector_3 operator+=(vector_3 rhs);
 	vector_3 operator+=(MyBig rhs);
-	vector_3 operator*=( vector_3 &rhs);
-	vector_3 operator*=(  MyBig rhs);
+	vector_3 operator*=(vector_3& rhs);
+	vector_3 operator*=(MyBig rhs);
 	vector_3 operator-(void);
-	 MyBig length(void) const;
-	vector_3 &normalize(void);
-	 MyBig dot(const vector_3 &rhs) const;
-	 MyBig self_dot(void) const;
-	vector_3 cross(const vector_3 &rhs) const;
+	MyBig length(void) const;
+	vector_3& normalize(void);
+	MyBig dot(const vector_3& rhs) const;
+	MyBig self_dot(void) const;
+	vector_3 cross(const vector_3& rhs) const;
 };
 
 #endif
